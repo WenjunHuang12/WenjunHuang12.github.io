@@ -17,19 +17,19 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>复现实验问题复盘 - WenjunHuang's Blog</title>
+  <title>209_长度最小的子数组 - WenjunHuang's Blog</title>
 
   
-    <meta name="description" content="复现与实验过程中遇到的问题 前置工作不完善，论文中的算法、数据结构及参数没有提前记录好，需要反复多次（进行不必要的）阅读论文 实验记录不完善，不清晰，没有大致的排期，会导致实验或复现时间过长 项目结构不清晰，参数管理混乱，未使用脚本形式进行参数测试，日志与输出不完善，导致难以排查问题 版本管理混乱 代码能力较差，且在使用AI进行辅助时没有总结规律，prompt质量不高  解决措施（经验教训）实验前">
+    <meta name="description" content="209. 长度最小的子数组209. 长度最小的子数组 该题最朴素的思路就是两层for循环，但是当然我们希望用更优的方法去解决，所以通过该题需要了解的是 滑动窗口法（或者称为 双指针法），就是通过一个可变动大小的窗口（分别由快慢指针去控制窗口大小）来控制子数组的长度，然后记录最小的子数组长度 其中快指针是用于遍历整个数组的，是不断往后遍历的；慢指针是用于控制窗口大小，以保证窗口内元素之和大于targ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="复现实验问题复盘">
-<meta property="og:url" content="https://wenjunhuang12.github.io/2025/05/06/%E5%A4%8D%E7%8E%B0%E5%AE%9E%E9%AA%8C%E9%97%AE%E9%A2%98%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:title" content="209_长度最小的子数组">
+<meta property="og:url" content="https://wenjunhuang12.github.io/2025/06/23/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="WenjunHuang&#39;s Blog">
-<meta property="og:description" content="复现与实验过程中遇到的问题 前置工作不完善，论文中的算法、数据结构及参数没有提前记录好，需要反复多次（进行不必要的）阅读论文 实验记录不完善，不清晰，没有大致的排期，会导致实验或复现时间过长 项目结构不清晰，参数管理混乱，未使用脚本形式进行参数测试，日志与输出不完善，导致难以排查问题 版本管理混乱 代码能力较差，且在使用AI进行辅助时没有总结规律，prompt质量不高  解决措施（经验教训）实验前">
+<meta property="og:description" content="209. 长度最小的子数组209. 长度最小的子数组 该题最朴素的思路就是两层for循环，但是当然我们希望用更优的方法去解决，所以通过该题需要了解的是 滑动窗口法（或者称为 双指针法），就是通过一个可变动大小的窗口（分别由快慢指针去控制窗口大小）来控制子数组的长度，然后记录最小的子数组长度 其中快指针是用于遍历整个数组的，是不断往后遍历的；慢指针是用于控制窗口大小，以保证窗口内元素之和大于targ">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center">
-<meta property="article:published_time" content="2025-05-06T11:36:57.000Z">
-<meta property="article:modified_time" content="2025-06-23T14:07:25.885Z">
+<meta property="article:published_time" content="2025-06-23T14:09:58.000Z">
+<meta property="article:modified_time" content="2025-06-23T14:11:25.968Z">
 <meta property="article:author" content="WenjunHuang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center">
@@ -78,56 +78,25 @@
 <div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-06T11:36:57.000Z">2025-05-06</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-06-23T14:07:25.885Z">2025-06-23</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/LeetCode-%E6%95%B0%E7%BB%84/">LeetCode/数组</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-06-23T14:09:58.000Z">2025-06-23</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-06-23T14:11:25.968Z">2025-06-23</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>复现实验问题复盘</span></h1>
+        <h1 class="text title"><span>209_长度最小的子数组</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="复现与实验过程中遇到的问题"><a href="#复现与实验过程中遇到的问题" class="headerlink" title="复现与实验过程中遇到的问题"></a>复现与实验过程中遇到的问题</h2><ul>
-<li>前置工作不完善，论文中的算法、数据结构及参数没有提前记录好，需要反复多次（进行不必要的）阅读论文</li>
-<li>实验记录不完善，不清晰，没有大致的排期，会导致实验或复现时间过长</li>
-<li>项目结构不清晰，参数管理混乱，未使用脚本形式进行参数测试，日志与输出不完善，导致难以排查问题</li>
-<li>版本管理混乱</li>
-<li>代码能力较差，且在使用AI进行辅助时没有总结规律，prompt质量不高</li>
-</ul>
-<h2 id="解决措施（经验教训）"><a href="#解决措施（经验教训）" class="headerlink" title="解决措施（经验教训）"></a>解决措施（经验教训）</h2><h3 id="实验前置工作"><a href="#实验前置工作" class="headerlink" title="实验前置工作"></a>实验前置工作</h3><ul>
-<li>在精读论文，了解文章的核心思路后，开始实验前，需要着重查看 算法部分 和 实验部分，以及其他可能得细节<ul>
-<li>文章中不熟悉的概念需要理清再进行实验，比如不同的度量（metrics）（比如什么是汉明距离，什么是余弦相似度等），不同的计算公式（求矩阵的特征值、特征向量等），都需要了解清晰再进行实验，否则在实验过程中出现了错误可能自己也不清楚</li>
-<li>算法和数据结构 最好能（以伪代码的方式）提前确定好<ul>
-<li>算法：比如 终止条件是什么，如何剪枝，迭代更新还是可微分 等等</li>
-<li>数据结构：比如 某个结构体里面包含哪些内容；某个数据集中需要使用几维矩阵，每一维分别代表什么；某一棵树中的非叶子节点代表什么，叶子节点包含什么 等等</li>
-</ul>
-</li>
-<li>实验的主要内容一般分布在 方法介绍 和 实验 部分，但是有的文章中实验的细节可能会分布在不同的章节中，这就需要去highlight一下</li>
-</ul>
-</li>
-<li>算法和重要的细节（如数据结构、超参数等）最好提前使用笔记本或者电子文档记录好，避免重复翻看论文耗费不必要的时间（如果有细节不清晰的话，当然必须要回看澄清）<ul>
-<li>对于算法，可以画一个简易的程序流程图整理思路并划分模块，方便后续实现</li>
-</ul>
-</li>
-<li>某些实验细节可能作者没有提及（出于各种原因），所以在阅读论文和实验过程中需要带着批判的态度。如果哪些部分你觉得“这种实现方式可能有问题”，“可能缺少了某些部分”或是“这样实现可能会更好”，那么请记录下来并在后续实现中留意</li>
-<li>许多文章中算法的某些模块或是dataset都是现有的SOTA或是已有的Github仓库内容，这种一般正文或是reference中都有提及，但也需要我们去提前了解和熟悉，否则在复现过程中会有一定阻力，并且不同的库的文档都不相同，需要去适应和调整</li>
-</ul>
-<h3 id="实验过程中"><a href="#实验过程中" class="headerlink" title="实验过程中"></a>实验过程中</h3><ul>
-<li>复现或实验务必做好实验记录（最好开始coding前就开始记录），因为一般实验的战线都不会很短（一两天之类的），时间长会导致人容易遗忘细节，所以需要做好相关记录，并跟踪进度；比如说第几天完成了哪些模块，或是尝试了哪种方法，遇到了哪些bug，避免重复踩进同一个坑</li>
-<li>项目结构要清晰（方便调试），最好提前进行模块划分再coding（属于前置工作）</li>
-<li>参数最好可以统一管理，并且实验的测试运行应使用脚本的形式，方便自动化调试，尤其对于超参数调优而言</li>
-<li>编写过程中，日志与必要的输出不能少，特别在不同的阶段与超参数的记录，这可以有效减少debug的成本；日志最好单独一个目录进行管理，每一次运行单独一个日志文件或是有明确时间戳的单个文件，可以快速定位</li>
-<li>coding时要进行版本管理，因为不确定哪一版才是自己真正需要的（Git不太熟悉的话，需要学习与记录）</li>
-<li>使用AI辅助coding的话，首先最好进行资料更新，prompt让它了解要实现什么样的效果（我个人会提前把文章给它，让它关注某些我想要实现的部分），然后如果要让其输出具体的代码，需要有较为明确的需求（越具体越好），得到的代码也需要自己审一遍或者跟着敲一遍，因为某些细节的偏差不容易看出来，而这些小问题可能会导致实验结果出现偏差</li>
-<li>使用AI进行第三方库代码调用的情况，建议也去自行查看一下第三方库的文档，避免踩坑；我个人之前在调用C++的Eigen库时，查看了官方文档才了解它是以列优先去存储向量的，但我个人的数据是默认以行优先进行向量存储的，而这点AI并没有进行提示，这就很容易出现bug，所以还是得留意一下</li>
-</ul>
-<h2 id="可尝试的方法"><a href="#可尝试的方法" class="headerlink" title="可尝试的方法"></a>可尝试的方法</h2><ul>
-<li>实验不复杂的情况下，可考虑使用敏捷开发，快速实现demo验证实验流程，一方面增强信息，另一方面确定该思路可行，再进一步完善代码</li>
-</ul>
-</article>
+  </div><article class="md-text content"><h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209. 长度最小的子数组"></a>209. 长度最小的子数组</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209. 长度最小的子数组</a></p>
+<p>该题最朴素的思路就是两层for循环，但是当然我们希望用更优的方法去解决，所以通过该题需要了解的是 滑动窗口法（或者称为 双指针法），就是通过一个可变动大小的窗口（分别由快慢指针去控制窗口大小）来控制子数组的长度，然后记录最小的子数组长度</p>
+<p>其中快指针是用于遍历整个数组的，是不断往后遍历的；慢指针是用于控制窗口大小，以保证窗口内元素之和大于target，当窗口内元素之和大于target时，可以尽可能地使慢指针往后移动，使窗口尽可能小</p>
+<p>可以看到下方的解题代码是使用 <strong>j</strong> 作为快指针，不断地往后去遍历整个数组，而 <strong>i</strong> 是用于调节窗口大小的</p>
+<p>当 <strong>j</strong> 往后遍历时，就去判断当前窗口内元素之和是否大于target，若符合条件，则将 <strong>i</strong> 往后调整，使得在满足窗口内元素之和大于target的条件下，窗口尽可能小（也就是子数组长度尽可能小）</p>
+<p>C++代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> s, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> result = INT32_MAX;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>; <span class="comment">// 滑动窗口数值之和</span></span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>; <span class="comment">// 滑动窗口起始位置</span></span><br><span class="line">        <span class="type">int</span> subLength = <span class="number">0</span>; <span class="comment">// 滑动窗口的长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; nums.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">            sum += nums[j];</span><br><span class="line">            <span class="comment">// 此处使用while，每次更新i(起始位置)，并不断比较子序列是否符合条件，核心代码</span></span><br><span class="line">            <span class="keyword">while</span> (sum &gt;= s) &#123;</span><br><span class="line">                subLength = (j - i + <span class="number">1</span>); <span class="comment">// 子数组的长度</span></span><br><span class="line">                result = result &lt; subLength ? result : subLength;</span><br><span class="line">                sum -= nums[i++]; <span class="comment">// 不断变更i（子序列的起始位置）</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result == INT32_MAX ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>许可协议</span></div>
@@ -136,7 +105,7 @@
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/05/21/%E8%B5%84%E6%BA%90%E5%AF%BC%E8%88%AA/">资源导航</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/06/23/59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/">59_螺旋矩阵</a></div></section></div>
 
 
 
@@ -165,7 +134,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0%E4%B8%8E%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">复现与实验过程中遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%8E%AA%E6%96%BD%EF%BC%88%E7%BB%8F%E9%AA%8C%E6%95%99%E8%AE%AD%EF%BC%89"><span class="toc-text">解决措施（经验教训）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%89%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C"><span class="toc-text">实验前置工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E4%B8%AD"><span class="toc-text">实验过程中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%B0%9D%E8%AF%95%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">可尝试的方法</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-text">209. 长度最小的子数组</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
@@ -176,7 +145,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
   </button>
 </div>
-</div><div class="scripts"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"WenjunHuang","sameAs":[],"image":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center"},"dateCreated":"2025-05-06T19:36:57+08:00","dateModified":"2025-06-23T22:07:25+08:00","datePublished":"2025-05-06T19:36:57+08:00","description":"","headline":"复现实验问题复盘","mainEntityOfPage":{"@type":"WebPage","@id":"https://wenjunhuang12.github.io/2025/05/06/%E5%A4%8D%E7%8E%B0%E5%AE%9E%E9%AA%8C%E9%97%AE%E9%A2%98%E5%A4%8D%E7%9B%98/"},"publisher":{"@type":"Organization","name":"WenjunHuang","sameAs":[],"image":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center","logo":{"@type":"ImageObject","url":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center"}},"url":"https://wenjunhuang12.github.io/2025/05/06/%E5%A4%8D%E7%8E%B0%E5%AE%9E%E9%AA%8C%E9%97%AE%E9%A2%98%E5%A4%8D%E7%9B%98/","image":[]}</script>
+</div><div class="scripts"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"WenjunHuang","sameAs":[],"image":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center"},"dateCreated":"2025-06-23T22:09:58+08:00","dateModified":"2025-06-23T22:11:25+08:00","datePublished":"2025-06-23T22:09:58+08:00","description":"","headline":"209_长度最小的子数组","mainEntityOfPage":{"@type":"WebPage","@id":"https://wenjunhuang12.github.io/2025/06/23/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/"},"publisher":{"@type":"Organization","name":"WenjunHuang","sameAs":[],"image":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center","logo":{"@type":"ImageObject","url":"https://i-blog.csdnimg.cn/direct/4e5aeb56e26a4351a8869ca16fba12fd.jpeg#pic_center"}},"url":"https://wenjunhuang12.github.io/2025/06/23/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/","image":[]}</script>
 
 
 <script type="text/javascript">
